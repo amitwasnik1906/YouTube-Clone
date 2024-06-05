@@ -1,0 +1,105 @@
+@import "../../base.scss";
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $black-primary;
+
+    height: 10vh;
+    width: 100%;
+
+    z-index: 999;
+    position: fixed;
+    top: 0;
+
+    &__menu {
+        display: flex;
+        text-align: center;
+        justify-content: space-between;
+        align-items: center;
+        margin-left: 20px;
+
+        .faBars {
+            cursor: pointer;
+        }
+
+    }
+
+    &__logo {
+        width: 140px;
+        object-fit: contain;
+        display: block;
+    }
+
+    form {
+        flex: 0.6;
+        display: flex;
+        padding: 5px 0 5px 12px;
+        margin: 0 5px;
+        border: 0.5px solid;
+        border-color: $border-color;
+        border-radius: 999px;
+        background-color: $black-secondary;
+
+        input {
+            width: 100%;
+            background-color: transparent;
+            color: $text-color;
+            border: none;
+            font-weight: 400;
+            padding: 0 10px;
+
+            &:focus {
+                outline: none;
+            }
+        }
+
+        button {
+            padding: 0 20px;
+            color: $text-color;
+            background: transparent;
+            border: none;
+
+            &:focus {
+                border: none;
+            }
+        }
+    }
+
+    &__icon {
+        flex: 0.15;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        img {
+            border-radius: 50%;
+            width: 40px;
+            object-fit: contain;
+            margin-left: 5px;
+        }
+    }
+}
+
+@media (max-width: $breakpoint-small) {
+    .header {
+        padding: 1rem;
+
+        form {
+            flex: 1;
+        }
+
+        &__menu {
+            display: block;
+        }
+
+        &__logo {
+            display: none;
+        }
+
+        &__icons>*:not(img) {
+            display: none;
+        }
+    }
+}
