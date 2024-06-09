@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./_header.scss"
 import { FaBars } from "react-icons/fa6";
 import { AiOutlineSearch } from "react-icons/ai"
 import { MdNotifications, MdApps } from "react-icons/md"
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Header({ handleToggleSidebar }) {
+  const [input, setInput] = useState('')
+
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    navigate(`/search/${input}`)
+  }
+
+  const user = useSelector(state => state.auth?.user)
+
   return (
     <div className='header'>
       <div className='header__menu'>
@@ -17,8 +30,11 @@ function Header({ handleToggleSidebar }) {
         <img src="https://download.logo.wine/logo/YouTube/YouTube-Logo.wine.png" alt="Logo" className="header__logo" />
       </div>
 
-      <form>
-        <input type="text" placeholder='Search' />
+      <form onSubmit={handleSubmit}>
+        <input type="text" placeholder='Search'
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
         <button>
           <AiOutlineSearch
             size={26}
@@ -30,7 +46,7 @@ function Header({ handleToggleSidebar }) {
         <MdNotifications
           size={26}
         />
-        <img src="https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png" alt="avatar" />
+        <img src={user?.photoURL} alt="avatar" />
       </div>
 
     </div>

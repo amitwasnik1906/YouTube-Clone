@@ -3,6 +3,7 @@ import "./_sidebar.scss"
 import { MdExitToApp, MdHistory, MdHome, MdLibraryBooks, MdSentimentDissatisfied, MdSubscriptions, MdThumbUp } from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 import { log_out } from '../../redux/actions/auth.action'
+import { Link } from 'react-router-dom'
 
 function Sidebar({ sidebar }) {
   const dispatch = useDispatch()
@@ -13,18 +14,20 @@ function Sidebar({ sidebar }) {
   }
 
   return (
-    <nav className={sidebar ? "sidebar open" : "sidebar "}
+    <nav className={sidebar ? "sidebar open" : "sidebar "}>
+      <Link to='/'>
+        <li>
+          <MdHome size={23} />
+          <span>Home</span>
+        </li>
+      </Link>
 
-    >
-      <li>
-        <MdHome size={23} />
-        <span>Home</span>
-      </li>
-
-      <li>
-        <MdSubscriptions size={23} />
-        <span>Subscriptions</span>
-      </li>
+      <Link to='/feed/subscriptions'>
+        <li>
+          <MdSubscriptions size={23} />
+          <span>Subscriptions</span>
+        </li>
+      </Link>
 
       <li>
         <MdThumbUp size={23} />
@@ -48,7 +51,7 @@ function Sidebar({ sidebar }) {
 
       <hr />
 
-      <li onClick={(e)=>logoutHandler()}>
+      <li onClick={(e) => logoutHandler()}>
         <MdExitToApp size={23} />
         <span>Log Out</span>
       </li>

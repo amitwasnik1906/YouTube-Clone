@@ -9,10 +9,12 @@ export const login = () => async dispatch => {
     });
     
     const provider = new GoogleAuthProvider();
-    // provider.addScope('https://www.googleapis.com/auth/youtube.force-ssl')
+    provider.addScope('https://www.googleapis.com/auth/youtube.force-ssl')
+    
     const res = await signInWithPopup(auth, provider)
-
+console.log(res);
     const accessToken = res.user.accessToken;
+    const refreshToken = res._tokenResponse.refreshToken;
     const profile = {
       name: res.user.displayName,
       photoURL: res.user.photoURL
@@ -20,10 +22,11 @@ export const login = () => async dispatch => {
 
     sessionStorage.setItem("ytc-access-token", accessToken)
     sessionStorage.setItem("ytc-user", JSON.stringify(profile))
+    sessionStorage.setItem("ytc-refresh-token", refreshToken)
 
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: accessToken,
+      payload: {accessToken, refreshToken},
     });
     dispatch({
       type: LOAD_PROFILE,

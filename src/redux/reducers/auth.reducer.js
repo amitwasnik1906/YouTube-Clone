@@ -14,6 +14,9 @@ const initialState = {
     ? JSON.parse(sessionStorage.getItem("ytc-user"))
     : null,
   loading: false,
+  refreshToken: sessionStorage.getItem("ytc-refresh-token")
+    ? sessionStorage.getItem("ytc-refresh-token")
+    : null,
 };
 
 export const authReducer = (prevState = initialState, action) => {
@@ -29,7 +32,8 @@ export const authReducer = (prevState = initialState, action) => {
     case LOGIN_SUCCESS:
       return {
         ...prevState,
-        accessToken: payload,
+        accessToken: payload.accessToken,
+        refreshToken : payload.refreshToken,
         loading: false,
       };
     case LOGIN_FAIL:
