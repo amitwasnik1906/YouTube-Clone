@@ -24,7 +24,9 @@ function WatchScreen() {
 
   useEffect(() => {
     dispatch(getVideoById(id))
-    dispatch(getRelatedVideos(id, channelTitle))
+    if (channelTitle) {
+      dispatch(getRelatedVideos(id, channelTitle))
+    }
   }, [dispatch, id, channelTitle])
 
   return (
@@ -56,7 +58,7 @@ function WatchScreen() {
               <VideoHorizontal video={video} key={video.id.videoId} />
             ))
         ) : (
-          [...Array(15)].map((j,i) => (
+          [...Array(15)].map((j, i) => (
             <SkeletonTheme color='#343a40' highlightColor='#3c4147' key={i}>
               <Skeleton width='100%' height='160px' count={20} />
             </SkeletonTheme>

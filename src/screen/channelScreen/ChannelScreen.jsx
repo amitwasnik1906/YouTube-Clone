@@ -46,11 +46,11 @@ function ChannelScreen() {
         <Row className='mt-2'>
           {!loading
             ? videos?.map(video => (
-              <Col md={3} lg={3} key={video.id}>
+              <Col sm={6} md={4} lg={3} key={video.id}>
                 <Video video={video} channelScreen />
               </Col>
             ))
-            : [...Array(15)].map((j, i) => (
+            : [...Array(30)].map((j, i) => (
               <Col md={3} lg={3}>
                 <SkeletonTheme
                   color='#343a40'
