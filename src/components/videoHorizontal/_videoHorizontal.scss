@@ -68,7 +68,9 @@
       }
       p {
          font-size: 0.9rem;
-         
+         &:hover{
+            text-decoration: underline
+         }
          @include line-clamp(1);
       }
    }

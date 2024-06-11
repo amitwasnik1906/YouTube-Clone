@@ -64,10 +64,13 @@ function Video({ video }) {
   const handleVideoClick = () => {
     navigate(`/watch/${_videoId}`)
   }
+  const handleChannelClick = () => {
+    navigate(`/channel/${channelId}`)
+  }
 
   return (
-    <div className="video" onClick={handleVideoClick}>
-      <div className="video__top">
+    <div className="video" >
+      <div className="video__top" onClick={handleVideoClick}>
         {/* <img src={medium.url} alt="" /> */}
         <LazyLoadImage src={medium.url} effect='blur' />
         <span
@@ -86,10 +89,10 @@ function Video({ video }) {
         <span> &nbsp; {moment(publishedAt).fromNow()}</span>
       </div>
 
-      <div className="video__channel">
+      <div className="video__channel" >
         {/* <img src={channelIcon?.url} alt="" /> */}
-        <LazyLoadImage src={channelIcon?.url} effect='blur' />
-        <p>{channelTitle}</p>
+        <LazyLoadImage src={channelIcon?.url} effect='blur' onClick={handleChannelClick}/>
+        <p onClick={handleChannelClick}>{channelTitle}</p>
       </div>
     </div>
   )

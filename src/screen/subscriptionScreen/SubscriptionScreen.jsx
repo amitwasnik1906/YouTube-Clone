@@ -27,8 +27,9 @@ const SubscriptionsScreen = () => {
         //         </SkeletonTheme>
         //     )}
         // </Container>
-        <div>
-            SubscriptionsScreen
+        <div className='text-center mt-12'>
+           <h1 className=''>SubscriptionsScreen</h1>
+           <h4 className=''>Currently Not Available</h4>
         </div>
     )
 }

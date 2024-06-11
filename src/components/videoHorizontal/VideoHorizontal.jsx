@@ -70,16 +70,19 @@ function VideoHorizontal({ video, searchScreen, subScreen }) {
       ? navigate(`/watch/${id.videoId}`)
       : navigate(`/channel/${_channelId}`)
   }
+  const handleChannelClick = () => {
+    navigate(`/channel/${_channelId}`)
+  }
 
   const thumbnail = !isVideo && 'videoHorizontal__thumbnail-channel'
 
   return (
     <Row
       className='py-2 m-1 videoHorizontal align-items-center'
-      onClick={handleClick}
     >
       {/* //TODO refractor grid */}
       <Col
+        onClick={handleClick}
         xs={6}
         md={searchScreen ? 4 : 6}
         className='videoHorizontal__left'>
@@ -99,7 +102,7 @@ function VideoHorizontal({ video, searchScreen, subScreen }) {
         xs={6}
         md={searchScreen ? 8 : 6}
         className='p-0 videoHorizontal__right'>
-        <p className={`mb-1 videoHorizontal__title ${!isVideo && 'videoHorizontal__titleChannel'}`}>
+        <p className={`mb-1 videoHorizontal__title ${!isVideo && 'videoHorizontal__titleChannel'}`} onClick={handleClick}>
           {title}
         </p>
 
@@ -110,15 +113,15 @@ function VideoHorizontal({ video, searchScreen, subScreen }) {
           </div>
         )}
 
-        <div className='my-1 videoHorizontal__channel d-flex align-items-center' >
+        <div className='my-1 videoHorizontal__channel d-flex align-items-center' onClick={handleChannelClick}>
           {isVideo && (
-            <LazyLoadImage src={channelIcon?.url} effect='blur' />
+            <LazyLoadImage src={channelIcon?.url} effect='blur' onClick={handleChannelClick}/>
           )}
           <p className='mb-0 '>{channelTitle}</p>
         </div>
 
         {(searchScreen || subScreen) && (
-          <p className='mt-1 videoHorizontal__desc'>{description}</p>
+          <p className='mt-3 videoHorizontal__desc'>{description}</p>
         )}
 
       </Col>
